@@ -8,7 +8,7 @@ import multiprocessing as mp
 from pymongo import MongoClient
 
 # 建立Mongodb collection
-client = MongoClient('172.28.0.2:27017')   # python連mongodb
+client = MongoClient('192.168.234.129:27017')   # python連mongodb
 db = client["judicial_test"]    # 資料庫名稱
 collect = db["judi"]    # collection名稱
 

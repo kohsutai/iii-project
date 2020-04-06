@@ -8,6 +8,7 @@ services:
     networks:
       test_network:
         ipv4_address: 172.28.0.2
+
 #  cloudera:
 #    image: cloudera/quickstart
 #    container_name: cloudera
@@ -46,15 +47,13 @@ services:
       context: ./dockerfiles
       dockerfile: dockerfile-jupyter
     container_name: jupyter
-    tty: true
-    stdin_open: true
-    depends_on:
-      - mongodb
     ports:
-      - "1111:8888"
+      - "8888:8888"
+    command: start.sh jupyter notebook --NotebookApp.token=''
     volumes:
-      - ./code:/home/jovyan
-    command: start-notebook.sh --NotebookApp.token='' 
+      - ./code:/home/jovyan/code
+    stdin_open: true
+    tty: true 
     networks:
       test_network:
         ipv4_address: 172.28.0.4
