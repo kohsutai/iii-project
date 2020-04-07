@@ -109,11 +109,12 @@ def search_result(court, reason):
         for month in range(1, 8, 6):
             url = 'https://law.judicial.gov.tw/FJUD/default_AD.aspx'
             user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36'
-            options = webdriver.ChromeOptions()
-            options.add_argument('user-agent=%s' % user_agent)
-            # options.add_argument('--headless')
             cap = DesiredCapabilities.CHROME
-            browser = webdriver.Remote(command_executor='http://selenium-hub:4444/wd/hub', desired_capabilities=cap)
+            browser = webdriver.Remote(command_executor='http://selenium:4444/wd/hub', desired_capabilities=cap)
+            
+            options = webdriver.ChromeOptions()
+	    options.add_argument('user-agent=%s' % user_agent)
+            # options.add_argument('--headless')
             browser.get(url)
             browser.get_cookies()
 
@@ -130,6 +131,4 @@ if __name__ == '__main__':
 
     for court in courtlist:
         for reason in reasonlist:
-            cp = mp.Process(target=search_result, args=(court, reason))
-            cp.start()
-            cp.join()
+            search_result(court, reason)

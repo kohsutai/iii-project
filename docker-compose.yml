@@ -42,8 +42,8 @@ services:
 #      test_network:
 #        ipv4_address: 172.28.0.3
 
-  selenium_hub:
-    image: selenium/hub:latest
+  selenium:
+    image: selenium/standalone-chrome
     container_name: selenium
     ports:
       - "4444:4444"
@@ -51,37 +51,19 @@ services:
       test_network:
         ipv4_address: 172.28.0.4
 
-  chrome:
-    image: selenium/node-chrome:latest
-    container_name: chrome
-    volumes:
-      - /dev/shm:/dev/shm
+  python:
+    build:
+      context: ./dockerfiles
+      dockerfile: dockerfile-python
+    container_name: python
     depends_on:
-      - selenium_hub
-    environment:
-      - HUB_HOST=selenium-hub
-      - HUB_PORT=4444
+      - selenium
+    volumes:
+      - ./code/Crawler_lawjudicial_v5.py:/code/Crawler_lawjudicial_v5.py
+    command: python code/Crawler_lawjudicial_v5.py
     networks:
       test_network:
         ipv4_address: 172.28.0.5
-
-  jupyter:
-    build:
-      context: ./dockerfiles
-      dockerfile: dockerfile-jupyter
-    container_name: jupyter
-    ports:
-      - "8888:8888"
-    command: start.sh jupyter notebook --NotebookApp.token=''
-    volumes:
-      - ./code:/home/jovyan/code
-    depends_on:
-      - chrome
-    stdin_open: true
-    tty: true 
-    networks:
-      test_network:
-        ipv4_address: 172.28.0.6
 
 networks:
   test_network:

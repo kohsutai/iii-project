@@ -1,0 +1,2 @@
+FROM python:latest
+RUN pip install selenium requests bs4 jsonlines pymongo
