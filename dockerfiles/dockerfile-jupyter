@@ -1,2 +1,2 @@
-FROM jupyter/base-notebook
+FROM jupyter/datascience-notebook
 RUN pip install selenium requests bs4 jsonlines pymongo
