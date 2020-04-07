@@ -1,2 +1,2 @@
-FROM python:latest
+FROM python:3.7
 RUN pip install selenium requests bs4 jsonlines pymongo
