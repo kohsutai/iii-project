@@ -5,7 +5,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import time
-import multiprocessing as mp
 from pymongo import MongoClient
 
 # 建立Mongodb collection
