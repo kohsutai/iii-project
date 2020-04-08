@@ -9,7 +9,7 @@ from pymongo import MongoClient
 
 # 建立Mongodb collection
 client = MongoClient('172.28.0.2:27017')   # python連mongodb
-db = client["judicial_test"]    # 資料庫名稱
+db = client["judicial"]    # 資料庫名稱
 collect = db["judi"]    # collection名稱
 
 def write_json_file(judge_id, judge_date, judge_reason, judge_content,
@@ -106,14 +106,10 @@ def get_element(browser, court, reason, year, month):
 def search_result(court, reason):
     for year in range(89, 109):
         for month in range(1, 8, 6):
+            time.sleep(5)
             url = 'https://law.judicial.gov.tw/FJUD/default_AD.aspx'
             # user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36'
-            cap = DesiredCapabilities.CHROME
-            browser = webdriver.Remote(command_executor='http://selenium:4444/wd/hub', desired_capabilities=cap)
-            
-            # options = webdriver.ChromeOptions()
-	    # options.add_argument('user-agent=%s' % user_agent)
-            # options.add_argument('--headless')
+            browser = webdriver.Remote(command_executor='http://selenium:4444/wd/hub', desired_capabilities=DesiredCapabilities.CHROME)             
             browser.get(url)
             browser.get_cookies()
 

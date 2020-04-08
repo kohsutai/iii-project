@@ -3,6 +3,8 @@ services:
   mongodb:
     image: mongo
     container_name: mongodb
+    ports:
+      - "27017:27017"
     stdin_open: true
     tty: true
     networks:
@@ -47,9 +49,11 @@ services:
     container_name: selenium
     ports:
       - "4444:4444"
+    stdin_open: true
+    tty: true
     networks:
       test_network:
-        ipv4_address: 172.28.0.4
+       ipv4_address: 172.28.0.4
 
   python:
     build:
@@ -59,8 +63,9 @@ services:
     depends_on:
       - selenium
     volumes:
-      - ./code/Crawler_lawjudicial_v5.py:/code/Crawler_lawjudicial_v5.py
-    command: python code/Crawler_lawjudicial_v5.py
+      - ./code/Crawler_lawjudicial_v5.py:/home/code/Crawler_lawjudicial_v5.py
+    stdin_open: true
+    tty: true
     networks:
       test_network:
         ipv4_address: 172.28.0.5
