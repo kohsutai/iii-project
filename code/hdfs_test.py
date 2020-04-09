@@ -6,7 +6,7 @@ db = mongodb_client["judicial_test"]
 collect = db["judi"]
 
 for record in collect.find():
-    print(record)
+    pprint.pprint(record)
 
 # client = Client("https://172.28.0.3:50070")
 # client.status("/")
