@@ -5,8 +5,9 @@ mongodb_client = MongoClient('172.28.0.2:27017')
 db = mongodb_client["judicial"]
 collect = db["judi"]
 
-for record in collect.find():
-    print(record)
+data = collect.find()
+print(data)
 
-# client = Client("https://172.28.0.3:50070")
+
+# client = Client("http://172.28.0.3:50070")
 # client.status("/")
