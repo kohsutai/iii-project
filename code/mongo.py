@@ -9,7 +9,7 @@ db = mongodb_client['iii-project']
 collection = db['judicial']
 
 output = []
-for i in collection.find():
+for i in collection.find({},{'_id':False}):
     i['_id']=re.findall("'(.*)'",i.get('_id').__repr__())[0]
     output.append(i)
 
