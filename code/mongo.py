@@ -5,9 +5,9 @@ mongodb_client = MongoClient('172.28.0.2:27017')
 db = mongodb_client.judicial
 collect = db.judi
 
-data = collect.find()
-print(data.count_documents({}))
-print(len(list(data)))
+data = list(collect.find())
+mongo_export = data.to_json()
+print(mongo_export)
 
 # client = Client("http://172.28.0.3:50070")
 # client.status("/")
