@@ -6,7 +6,7 @@ mongodb_client = MongoClient('172.28.0.2:27017')
 db = mongodb_client.judicial
 collect = db.judi
 
-data = list(collect.find())
+data = collect.find()
 mongo_output = json.dumps(data)
 print(mongo_output)
 
