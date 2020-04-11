@@ -10,7 +10,7 @@ collection = db['judicial']
 
 data = list(collection.find())
 with open('/home/data/mongo_data.json','w',encoding='utf-8') as f:
-  j.write(dumps(data)
+  j.write(dumps(data))
 
 # client = Client("http://172.28.0.3:50070")
 # client.status("/")
