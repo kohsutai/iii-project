@@ -7,8 +7,8 @@ db = mongodb_client.judicial
 collect = db.judi
 
 data = list(collect.find())
-mongo_export = data.to_json()
-print(mongo_export)
+mongo_output = json.dumps(data)
+print(mongo_output)
 
 # client = Client("http://172.28.0.3:50070")
 # client.status("/")
