@@ -2,18 +2,14 @@ import json
 from pymongo import MongoClient
 import re
 from hdfs import *
-
+from bson.json_util import dumps
 
 mongodb_client = MongoClient('172.28.0.2:27017')
 db = mongodb_client['iii-project']
 collection = db['judicial']
 
-output = []
-for i in collection.find():
-    output.append(i)
+data = list(collection.find())
+print(dumps(data))
 
-with open('/home/data/mongo_data.json', 'w', encoding="UTF-8") as f:
-    f.write(json.dumps(output, indent=2))
-   
 # client = Client("http://172.28.0.3:50070")
 # client.status("/")
