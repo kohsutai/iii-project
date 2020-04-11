@@ -9,8 +9,8 @@ from pymongo import MongoClient
 
 # 建立Mongodb collection
 client = MongoClient('172.28.0.2:27017')   # python連mongodb
-db = client["judicial"]    # 資料庫名稱
-collect = db["judi"]    # collection名稱
+db = client["iii-project"]    # 資料庫名稱
+collect = db["judicial"]    # collection名稱
 
 def write_json_file(judge_id, judge_date, judge_reason, judge_content,
                                 each_judgment_list, each_law_list):
