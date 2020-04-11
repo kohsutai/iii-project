@@ -10,7 +10,6 @@ collection = db['judicial']
 
 output = []
 for i in collection.find():
-    i['_id']=re.findall("'(.*)'",i.get('_id').__repr__())[0]
     output.append(i)
 
 with open('/home/data/mongo_data.json', 'w', encoding="UTF-8") as f:
