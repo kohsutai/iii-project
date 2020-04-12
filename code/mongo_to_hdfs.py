@@ -19,4 +19,4 @@ with open("/home/data/raw_data.json",'w',encoding='utf-8') as f:
 
 # Send raw data from mongodb to cloudera hdfs
 hdfs_client.makedirs("/user/cloudera/data", permission=777)
-hdfs_client.upload("/user/cloudera/data", "/home/cloudera/iii-project/data/raw_data.json")
+hdfs_client.upload("/user/cloudera/data", "/home/cloudera/iii-project/data")
