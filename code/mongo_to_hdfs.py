@@ -20,5 +20,5 @@ with open(mongo_path,'w',encoding='utf-8') as f:
   f.write(dumps(output, ensure_ascii=False))
 
 # Send raw data from mongodb to cloudera hdfs
-client.makedirs(hdfs_path, permission=777)
-client.upload(hdfs_path, mongo_path)
+hdfs_client.makedirs(hdfs_path, permission=777)
+hdfs_client.upload(hdfs_path, mongo_path)
