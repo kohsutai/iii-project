@@ -1,5 +1,4 @@
 from pymongo import MongoClient
-from hdfs import Client
 import json
 from bson.json_util import dumps
 
@@ -16,7 +15,3 @@ for i in collection.find({},{'_id':False}):
 
 with open("/home/data/raw_data.json",'w',encoding='utf-8') as f:
   f.write(dumps(output, ensure_ascii=False))
-
-# Send raw data from mongodb to cloudera hdfs
-hdfs_client.makedirs("/user/cloudera/data", permission=777)
-hdfs_client.upload("/user/cloudera/data", "/home/cloudera/iii-project/data")
