@@ -17,4 +17,6 @@ with open("/home/data/raw_data.json",'w',encoding='utf-8') as f:
   f.write(dumps(output, ensure_ascii=False))
 
 # Send raw data from mongodb to hdfs
-hdfs_client.upload("/user/cloudera/iii-project/data","/home/cloudera/data")
+cloudera_local_path = "/home/cloudera/iii-project/data"
+cloudera_hdfs_path = "/user/cloudera/data"
+hdfs_client.upload(cloudera_hdfs_path, cloudera_local_path)
