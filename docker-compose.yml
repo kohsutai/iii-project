@@ -12,11 +12,10 @@ services:
         ipv4_address: 172.28.0.2
 
   cloudera:
-    image: cloudera/quickstart:latest
+    image: cloudera/quickstart
     privileged: true
     hostname: quickstart.cloudera
-    container_name: cloudera
-    command: /usr/bin/docker-quickstart
+    container_name: cloudera 
     ports:
       - "8020:8020"   # HDFS
       - "8022:22"     # SSH
@@ -41,6 +40,8 @@ services:
     tty: true
     volumes:
       - /var/shared_cloudera_quickstart:/media/shared_from_local
+      - ./data:/home/cloudera/data
+    command: /usr/bin/docker-quickstart
     networks:
       test_network:
         ipv4_address: 172.28.0.3
@@ -64,7 +65,8 @@ services:
     depends_on:
       - selenium
     volumes:
-      - ./code/Crawler_lawjudicial_v5.py:/home/code/Crawler_lawjudicial_v5.py
+      - ./code:/home/code
+      - ./data:/home/data
     stdin_open: true
     tty: true
     networks:
