@@ -4,29 +4,29 @@ import os
 from pymongo import MongoClient
 from bson.json_util import dumps
 
-userdict_path = "C:/Users/Big data/Anaconda3/envs/Project/ETL/userdict.txt"
-stopword_path = "C:/Users/Big data/Anaconda3/envs/Project/ETL/stopword.txt"
-raw_data_path = "C:/Users/Big data/Anaconda3/envs/Project/ETL/raw_data.json"
-clean_data_path = "C:/Users/Big data/Anaconda3/envs/Project/ETL/clean_data.json"
+userdict_path = "/home/data/userdict.txt"
+stopword_path = "/home/data/stopword.txt"
+raw_data_path = "/home/data/raw_data.json"
+clean_data_path = "/home/data/clean_data.json"
 
-# if os.path.isfile(raw_data_path):
-#     os.remove(raw_data_path)
-# if os.path.isfile(clean_data_path):
-#     os.remove(clean_data_path)
-#     print('File deleted')
-#
-# # 建立Mongodb連線
-# mongodb_client = MongoClient('172.28.0.2:27017')
-# db = mongodb_client['iii-project']
-# collection = db['judicial']
-#
-# # 將資料從Mongodb取出
-# output = []
-# for i in collection.find():
-#     output.append(i)
-#
-# with open(raw_data_path,'w',encoding='utf-8') as f:
-#     f.write(dumps(output, ensure_ascii=False))
+if os.path.isfile(raw_data_path):
+    os.remove(raw_data_path)
+if os.path.isfile(clean_data_path):
+    os.remove(clean_data_path)
+    print('File deleted')
+
+# 建立Mongodb連線
+mongodb_client = MongoClient('172.28.0.2:27017')
+db = mongodb_client['iii-project']
+collection = db['judicial']
+
+# 將資料從Mongodb取出
+output = []
+for i in collection.find():
+    output.append(i)
+
+with open(raw_data_path,'w',encoding='utf-8') as f:
+    f.write(dumps(output, ensure_ascii=False))
 
 # 載入自定義詞典&停用詞
 jieba.load_userdict(userdict_path)
