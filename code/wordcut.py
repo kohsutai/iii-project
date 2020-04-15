@@ -1,7 +1,13 @@
 import jieba
 import json
+import os
 from pymongo import MongoClient
 from bson.json_util import dumps
+
+if os.path.isfile('/home/data/raw_data.json'):
+    os.remove('/home/data/raw_data.json')
+if os.path.isfile('/home/data/clean_data.json'):
+    os.remove('/home/data/clean_data.json')
 
 # 建立Mongodb連線
 mongodb_client = MongoClient('172.28.0.2:27017')
