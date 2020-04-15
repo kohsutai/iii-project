@@ -50,8 +50,8 @@ def wordcut(raw_data):
                     'judge_date': date_time,
                     'judge_reason': str(i['judge_reason']),
                     'judge_content': seq_content,
-                    'judgment_list': str(i['each_judgment_list']),
-                    'law_list': str(i['each_law_list'])
+                    'judgment_list': str(i['judgment_list']),
+                    'law_list': str(i['law_list'])
                     }
             c.write(json.dumps(data, ensure_ascii=False))
     print('輸出成功')
