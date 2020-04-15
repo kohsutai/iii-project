@@ -53,7 +53,7 @@ def wordcut(raw_data):
                     'judgment_list': str(i['judgment_list']),
                     'law_list': str(i['law_list'])
                     }
-            c.write(json.dumps(data, ensure_ascii=False)+',')
+            c.write(json.dumps(data, ensure_ascii=False))
     print('輸出成功')
 
 def main():
