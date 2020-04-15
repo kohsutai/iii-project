@@ -19,8 +19,8 @@ def write_json_file(judge_id, judge_date, judge_reason, judge_content,
             'judge_date': judge_date,
             'judge_reason': judge_reason,
             'judge_content': judge_content,
-            'each_judgment_list': each_judgment_list,
-            'each_law_list': each_law_list
+            'judgment_list': each_judgment_list,
+            'law_list': each_law_list
             }
     collect.insert_one(data)
 
