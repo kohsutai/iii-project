@@ -9,8 +9,6 @@ stopword_path = "/home/data/stopword.txt"
 raw_data_path = "/home/data/raw_data.json"
 clean_data_path = "/home/data/clean_data.json"
 
-if os.path.isfile(raw_data_path):
-    os.remove(raw_data_path)
 if os.path.isfile(clean_data_path):
     os.remove(clean_data_path)
     print('File deleted')
@@ -63,8 +61,8 @@ def wordcut(raw_data):
                 'judge_date': date_time,
                 'judge_reason': str(i['judge_reason']),
                 'judge_content': seq_content,
-                'judgment_list': str(i['each_judgment_list']),
-                'law_list': str(i['each_law_list'])
+                'judgment_list': str(i['judgment_list']),
+                'law_list': str(i['law_list'])
                 }
         result.append(data)
         json.dump(result, open(clean_data_path, 'w',encoding='utf-8'), ensure_ascii=False)
