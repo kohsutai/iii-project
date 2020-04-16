@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 from pyspark import SparkContext
 from pyspark.sql import SQLContext
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 if __name__ == "__main__":
     sc = SparkContext()
