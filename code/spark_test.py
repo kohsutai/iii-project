@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: ascii -*-
+# -*- coding: utf-8 -*-
 from pyspark import SparkContext
 from pyspark.sql import SQLContext
 
