@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   mongodb:
     image: mongo
@@ -40,8 +40,10 @@ services:
     tty: true
     volumes:
       - /var/shared_cloudera_quickstart:/media/shared_from_local
-      - ./data:/home/cloudera/data
-    command: /usr/bin/docker-quickstart
+      - ./data/clean_data.json:/home/cloudera/data/clean_data.json
+      - ./code/spark_test.py:/home/cloudera/code/spark_test.py
+      - ./code/cloudera-start.sh:/home/cloudera/code/cloudera-start.sh
+    command: /home/cloudera/code/cloudera-start.sh
     networks:
       test_network:
         ipv4_address: 172.28.0.3
@@ -65,13 +67,114 @@ services:
     depends_on:
       - selenium
     volumes:
-      - ./code:/home/code
+      - ./code/Crawler_lawjudicial_v5.py:/home/code/Crawler_lawjudicial_v5.py
+      - ./code/wordcut.py:/home/code/wordcut.py
       - ./data:/home/data
     stdin_open: true
     tty: true
     networks:
       test_network:
         ipv4_address: 172.28.0.5
+
+#  jupyter:
+#    build:
+#      context: ./dockerfiles
+#      dockerfile: dockerfile-jupyter
+#    container_name: jupyter
+#    depends_on:
+#      - selenium
+#    ports:
+#      - "8889:8888"
+#    volumes:
+#      - ./code:/home/jovyan/work
+#    command: start-notebook.sh --NotebookApp.token=''
+#    stdin_open: true
+#    tty: true
+#    networks:
+#      test_network:
+#        ipv4_address: 172.28.0.6
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.2.0
+    container_name: elasticsearch
+    hostname: elasticsearch
+    ports:
+      - "9200:9200"
+    environment: 
+      - cluster.name=docker-cluster
+      - node.name=node1
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms384m -Xmx384m"
+      - "cluster.initial_master_nodes=node1"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./elk/esdata:/usr/share/elasticsearch/data
+    networks:
+      test_network:
+        ipv4_address: 172.28.0.7
+
+#  logstash:
+#    image: docker.elastic.co/logstash/logstash-oss:7.2.0
+#    container_name: logstash
+#    hostname: logstash
+#    ports:
+#      - "5000:5000"
+#    environment:
+#      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+#    depends_on:
+#      - elasticsearch
+#    stdin_open: true
+#    tty: true
+#    networks:
+#      test_network:
+#        ipv4_address: 172.28.0.8
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:7.2.0
+    container_name: kibana
+    hostname: kibana
+    ports:
+      - "5601:5601"
+    environment:
+      SERVER_NAME: kibana_server
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    stdin_open: true
+    tty: true
+    networks:
+      test_network:
+        ipv4_address: 172.28.0.9
+
+  django_db:
+    image: postgres
+    container_name: django_db
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      test_network:
+        ipv4_address: 172.28.0.10
+  
+  django_web:
+    build: 
+      context: ./django
+      dockerfile: dockerfile-django
+    container_name: django_web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./django:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - django_db
+    networks:
+      test_network:
+        ipv4_address: 172.28.0.11
 
 networks:
   test_network:

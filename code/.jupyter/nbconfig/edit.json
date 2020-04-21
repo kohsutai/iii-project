@@ -2,6 +2,10 @@
   "Editor": {
     "file_extension_modes": {
       ".py": "Python"
+    },
+    "codemirror_options": {
+      "vimMode": false,
+      "keyMap": "default"
     }
   }
 }

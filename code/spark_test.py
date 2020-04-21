@@ -10,6 +10,7 @@ if __name__ == "__main__":
     sc = SparkContext()
     sqlContext = SQLContext(sc)
     df = sqlContext.read.json("hdfs://localhost/user/cloudera/data/clean_data.json")
+    df.persist()
 
     df.show()
     df.select(df['judge_content']).show()
