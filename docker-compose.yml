@@ -1,80 +1,80 @@
 version: '3'
 services:
-  mongodb:
-    image: mongo
-    container_name: mongodb
-    ports:
-      - "27017:27017"
-    stdin_open: true
-    tty: true
-    networks:
-      test_network:
-        ipv4_address: 172.28.0.2
+#    mongodb:
+#    image: mongo
+#    container_name: mongodb
+#    ports:
+#      - "27017:27017"
+#    stdin_open: true
+#    tty: true
+#    networks:
+#      test_network:
+#        ipv4_address: 172.28.0.2
 
-  cloudera:
-    image: cloudera/quickstart
-    privileged: true
-    hostname: quickstart.cloudera
-    container_name: cloudera 
-    ports:
-      - "8020:8020"   # HDFS
-      - "8022:22"     # SSH
-      - "7180:7180"   # Cloudera Manager
-      - "8888:8888"   # Hue
-      - "11000:11000" # Oozie
-      - "50070:50070" # HDFS Rest Namenode
-      - "50075:50075" # HDFS Rest Datanode
-      - "2181:2181"   # Zookeeper
-      - "8088:8088"   # YARN Resource Manager
-      - "19888:19888" # MapReduce Job History
-      - "50030:50030" # MapReduce Job Tracker
-      - "8983:8983"   # Solr
-      - "16000:16000" # Sqoop Metastore
-      - "8042:8042"   # YARN Node Manager
-      - "60010:60010" # HBase Master
-      - "60030:60030" # HBase Region
-      - "9090:9090"   # HBase Thrift
-      - "8080:8080"   # HBase Rest
-      - "7077:7077"   # Spark Master
-    stdin_open: true
-    tty: true
-    volumes:
-      - /var/shared_cloudera_quickstart:/media/shared_from_local
-      - ./data/clean_data.json:/home/cloudera/data/clean_data.json
-      - ./code/spark_test.py:/home/cloudera/code/spark_test.py
-      - ./code/cloudera-start.sh:/home/cloudera/code/cloudera-start.sh
-    command: /home/cloudera/code/cloudera-start.sh
-    networks:
-      test_network:
-        ipv4_address: 172.28.0.3
+# cloudera:
+#    image: cloudera/quickstart
+#    privileged: true
+#    hostname: quickstart.cloudera
+#    container_name: cloudera 
+#    ports:
+#      - "8020:8020"   # HDFS
+#      - "8022:22"     # SSH
+#      - "7180:7180"   # Cloudera Manager
+#      - "8888:8888"   # Hue
+#      - "11000:11000" # Oozie
+#      - "50070:50070" # HDFS Rest Namenode
+#      - "50075:50075" # HDFS Rest Datanode
+#      - "2181:2181"   # Zookeeper
+#      - "8088:8088"   # YARN Resource Manager
+#      - "19888:19888" # MapReduce Job History
+#      - "50030:50030" # MapReduce Job Tracker
+#      - "8983:8983"   # Solr
+#      - "16000:16000" # Sqoop Metastore
+#      - "8042:8042"   # YARN Node Manager
+#      - "60010:60010" # HBase Master
+#      - "60030:60030" # HBase Region
+#      - "9090:9090"   # HBase Thrift
+#      - "8080:8080"   # HBase Rest
+#      - "7077:7077"   # Spark Master
+#    stdin_open: true
+#    tty: true
+#    volumes:
+#      - /var/shared_cloudera_quickstart:/media/shared_from_local
+#      - ./data/clean_data.json:/home/cloudera/data/clean_data.json
+#      - ./code/spark_test.py:/home/cloudera/code/spark_test.py
+#      - ./code/cloudera-start.sh:/home/cloudera/code/cloudera-start.sh
+#    command: /home/cloudera/code/cloudera-start.sh
+#    networks:
+#      test_network:
+#        ipv4_address: 172.28.0.3
+#
+#  selenium:
+#    image: selenium/standalone-chrome
+#    container_name: selenium
+#    ports:
+#      - "4444:4444"
+#    stdin_open: true
+#    tty: true
+#    networks:
+#      test_network:
+#        ipv4_address: 172.28.0.4
 
-  selenium:
-    image: selenium/standalone-chrome
-    container_name: selenium
-    ports:
-      - "4444:4444"
-    stdin_open: true
-    tty: true
-    networks:
-      test_network:
-        ipv4_address: 172.28.0.4
-
-  python:
-    build:
-      context: ./dockerfiles
-      dockerfile: dockerfile-python
-    container_name: python
-    depends_on:
-      - selenium
-    volumes:
-      - ./code/Crawler_lawjudicial_v5.py:/home/code/Crawler_lawjudicial_v5.py
-      - ./code/wordcut.py:/home/code/wordcut.py
-      - ./data:/home/data
-    stdin_open: true
-    tty: true
-    networks:
-      test_network:
-        ipv4_address: 172.28.0.5
+#  python:
+#    build:
+#      context: ./dockerfiles
+#      dockerfile: dockerfile-python
+#    container_name: python
+#    depends_on:
+#      - selenium
+#    volumes:
+#      - ./code/Crawler_lawjudicial_v5.py:/home/code/Crawler_lawjudicial_v5.py
+#      - ./code/wordcut.py:/home/code/wordcut.py
+#      - ./data:/home/data
+#    stdin_open: true
+#    tty: true
+#    networks:
+#      test_network:
+#        ipv4_address: 172.28.0.5
 
 #  jupyter:
 #    build:
@@ -149,32 +149,49 @@ services:
       test_network:
         ipv4_address: 172.28.0.9
 
-  django_db:
-    image: postgres
-    container_name: django_db
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    networks:
-      test_network:
-        ipv4_address: 172.28.0.10
+#  django_db:
+#    image: postgres
+#    container_name: django_db
+#    environment:
+#      - POSTGRES_DB=postgres
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+#    networks:
+#      test_network:
+#        ipv4_address: 172.28.0.10
   
-  django_web:
-    build: 
-      context: ./django
-      dockerfile: dockerfile-django
-    container_name: django_web
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - ./django:/code
-    ports:
-      - "8000:8000"
-    depends_on:
-      - django_db
-    networks:
-      test_network:
-        ipv4_address: 172.28.0.11
+#  django_web:
+#    build: 
+#      context: ./django
+#      dockerfile: dockerfile-django
+#    container_name: django_web
+#    command: python manage.py runserver 0.0.0.0:8000
+#    volumes:
+#      - ./django:/code
+#    ports:
+#      - "8000:8000"
+#    depends_on:
+#      - django_db
+#    networks:
+#      test_network:
+#        ipv4_address: 172.28.0.11
+
+#  flask:
+#    build:
+#      context: ./flask
+#      dockerfile: dockerfile-flask
+#    container_name: flask
+#    volumes:
+#      - ./flask:/flask
+#    ports:
+#            - "5000:5000"
+#    depends_on:
+#      - elasticsearch
+#    stdin_open: true
+#    tty: true
+#    networks:
+#      test_network:
+#        ipv4_address: 172.28.0.12
 
 networks:
   test_network:
