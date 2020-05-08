@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Welcome</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="header">
+    <h1 class="logo">
+        <img src="https://i1.wp.com/5b0988e595225.cdn.sohucs.com/images/20170824/50cbf1ff1528475da565963e630a88ac.jpeg?zoom=2" width="100">Welcome
+    </h1>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Home</a></li>
+      <li ><a href="/search">關鍵字搜尋</a></li>
+      <li><a href="/win_lose">結果預測</a></li>
+      <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="/">統計查詢<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+              <li><a href="/statistic_keywords">離婚理由</a></li>
+              <li><a href="/statistic_laws">常用法條</a></li>
+              <li><a href="/statistic_locations">地區統計</a></li>
+          </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+    {% block content %}{% endblock content%}
+</body>
+</html>
