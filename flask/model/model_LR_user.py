@@ -6,7 +6,7 @@ import csv
 entering = '''女生因男生外遇而且不拿錢回家想離婚,男生卻不想離但女生沒錢請律師或徵信社之類的構成離婚要件一定要請警察捉姦在床嗎?
 還是有其他因素也可以訴請離婚呢?女生該如何主張訴請離婚呢?謝謝'''
 
-reason_path = "C:/Users/Big data/Anaconda3/envs/Project/Flask/reason.csv"
+reason_path = "/flask/model/reason.csv"
 
 
 def find_factor(enter_str):
