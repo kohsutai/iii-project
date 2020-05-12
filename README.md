@@ -6,5 +6,5 @@
 # docker-kibana: Done
 # docker-flask: Working on...
 
-Step1. Change elk/esdata authority
-sudo chmod -R 777 elk/esdata
+Step1. Change elk/esdata authority : chmod -R 777 elk/esdata
+Step2. Start up docker : docker-compose up -d
