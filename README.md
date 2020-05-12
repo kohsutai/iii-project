@@ -5,3 +5,6 @@
 # docker-elasticsearch: Done
 # docker-kibana: Done
 # docker-flask: Working on...
+
+Step1. Change elk/esdata authority
+sudo chmod -R 777 elk/esdata
