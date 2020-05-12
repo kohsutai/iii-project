@@ -10,12 +10,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_wtf import Form
 from wtforms import StringField, SubmitField, validators, PasswordField, ValidationError
 from wtforms.fields.html5 import EmailField
-from Flask.model.model_LR_user import find_factor
+from flask.model.model_LR_user import find_factor
 
-# es = Elasticsearch('172.28.0.7:9200')
+es = Elasticsearch('172.28.0.7:9200')
 
 # 測試用
-es = Elasticsearch('192.168.234.134:9200')
+# es = Elasticsearch('192.168.234.134:9200')
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
