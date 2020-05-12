@@ -1,15 +1,15 @@
 version: '3'
 services:
-   mongodb:
-   image: mongo
-   container_name: mongodb
-   ports:
-     - "27017:27017"
-   stdin_open: true
-   tty: true
-   networks:
-     test_network:
-       ipv4_address: 172.28.0.2
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    stdin_open: true
+    tty: true
+    networks:
+      test_network:
+        ipv4_address: 172.28.0.2
 
 # cloudera:
 #    image: cloudera/quickstart
@@ -47,52 +47,34 @@ services:
 #    networks:
 #      test_network:
 #        ipv4_address: 172.28.0.3
-#
- selenium:
-   image: selenium/standalone-chrome
-   container_name: selenium
-   ports:
-     - "4444:4444"
-   stdin_open: true
-   tty: true
-   networks:
-     test_network:
-       ipv4_address: 172.28.0.4
 
- python:
-   build:
-     context: ./dockerfiles
-     dockerfile: dockerfile-python
-   container_name: python
-   depends_on:
-     - selenium
-   volumes:
-     - ./code/Crawler_lawjudicial_v5.py:/home/code/Crawler_lawjudicial_v5.py
-     - ./code/wordcut.py:/home/code/wordcut.py
-     - ./data:/home/data
-   stdin_open: true
-   tty: true
-   networks:
-     test_network:
-       ipv4_address: 172.28.0.5
+  selenium:
+    image: selenium/standalone-chrome
+    container_name: selenium
+    ports:
+      - "4444:4444"
+    stdin_open: true
+    tty: true
+    networks:
+      test_network:
+        ipv4_address: 172.28.0.4
 
-#  jupyter:
-#    build:
-#      context: ./dockerfiles
-#      dockerfile: dockerfile-jupyter
-#    container_name: jupyter
-#    depends_on:
-#      - selenium
-#    ports:
-#      - "8889:8888"
-#    volumes:
-#      - ./code:/home/jovyan/work
-#    command: start-notebook.sh --NotebookApp.token=''
-#    stdin_open: true
-#    tty: true
-#    networks:
-#      test_network:
-#        ipv4_address: 172.28.0.6
+  python:
+    build:
+      context: ./dockerfiles
+      dockerfile: dockerfile-python
+    container_name: python
+    depends_on:
+      - selenium
+    volumes:
+      - ./code/Crawler_lawjudicial_v5.py:/home/code/Crawler_lawjudicial_v5.py
+      - ./code/wordcut.py:/home/code/wordcut.py
+      - ./data:/home/data
+    stdin_open: true
+    tty: true
+    networks:
+      test_network:
+        ipv4_address: 172.28.0.5
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.2.0
@@ -176,22 +158,22 @@ services:
 #      test_network:
 #        ipv4_address: 172.28.0.11
 
- flask:
-   build:
-     context: ./flask
-     dockerfile: dockerfile-flask
-   container_name: flask
-   volumes:
-     - ./flask:/flask
-   ports:
-           - "5000:5000"
-   depends_on:
-     - elasticsearch
-   stdin_open: true
-   tty: true
-   networks:
-     test_network:
-       ipv4_address: 172.28.0.12
+  flask:
+    build:
+      context: ./flask
+      dockerfile: dockerfile-flask
+    container_name: flask
+    volumes:
+      - ./flask:/flask
+    ports:
+      - "5000:5000"
+    depends_on:
+      - elasticsearch
+    stdin_open: true
+    tty: true
+    networks:
+      test_network:
+        ipv4_address: 172.28.0.12
 
 networks:
   test_network:
