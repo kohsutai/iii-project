@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Welcome</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+      ol, ul{list-style-type: none;}
+      #divb1
+      {
+          width: 100%;
+          height: 100px;
+      }
+      #divb2
+      {
+          width: 100%;
+          height: 400px;
+      }
+      #divb3
+      {
+          width: 100%;
+          height: 300px;
+      }
+      #divb4
+      {
+          width: 100%;
+          height: 100px;
+      }
+      #div1{background-color: #87f5a8;}
+      #div2{background-color: #0a0a0a;}
+      #ulclr1{color: whitesmoke}
+      #ulclr2{color: gray}
+      #ulclr3{color: rgb(177, 164, 164)}
+      #picback
+      {
+          widows: 170px;
+          height: 170px;
+          background-image: url(/static/images/heartbreak.png);
+      }
+
+
+  </style>
+</head>
+<body>
+<div class="header">
+    <h1 class="logo">
+        <img src="https://i1.wp.com/5b0988e595225.cdn.sohucs.com/images/20170824/50cbf1ff1528475da565963e630a88ac.jpeg?zoom=2" width="100">Welcome
+    </h1>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Home</a></li>
+      {% if current_user.is_authenticated %}
+      <li><a href="{{ url_for('settings') }}">Settings</a></li>
+      <li><a href="{{ url_for('logout') }}">登出</a></li>
+      {% else %}
+      <li><a href="{{ url_for('login') }}">登入</a></li>
+      {% endif %}
+      <li><a href="{{ url_for('register') }}">註冊</a></li>
+      <li ><a href="/search">關鍵字搜尋</a></li>
+      <li><a href="/win_lose">結果預測</a></li>
+      <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="/">統計查詢<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+              {% if current_user.is_authenticated %}
+              <li><a href="/statistic_keywords">離婚理由</a></li>
+              {% endif %}
+              {% if current_user.is_authenticated %}
+              <li><a href="/statistic_laws">常用法條</a></li>
+              {% endif %}
+              {% if current_user.is_authenticated %}
+              <li><a href="/statistic_locations">地區統計</a></li>
+              {% endif %}
+          </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+    {% block content %}{% endblock content%}
+</body>
+</html>

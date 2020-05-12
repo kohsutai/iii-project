@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="divb2">
+        <div id="picback"></div>
+    </div>
+
+    <div id="dvb3">
+        <div id="div2">
+            <div class="row align-items-end">
+                <div class="col-4">
+                    <ul>
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <ul>
+                        <li style="line-height: 20px;"><small><a id="ulclr3">關於我們</a></small></li>
+                        <li style="line-height: 40px;"><a id="ulclr1" href='https://zh-tw.facebook.com/'>粉絲團</a></li>
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <ul>
+                        <li style="line-height: 20px;"><small><a id="ulclr3">相關網頁</a></small></li>
+                        <li style="line-height: 40px;"><a id="ulclr1" href='https://law.judicial.gov.tw/default.aspx'>司法院法學資料檢索系統</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="divb4"></div>
+            <footer class="text-center" id="ulclr1">
+                {% block footer %}   
+                    <small> &copy; 2020<a title="Written by Group Diamond">, Group Diamond</a>
+                    </small>
+                {% endblock %}
+            </footer>
+        </div>
+    </div>
+{% endblock %}
