@@ -3,14 +3,14 @@ import json
 import jieba
 import os
 # from pymongo import MongoClient
-# # from bson.json_util import dumps
+# from bson.json_util import dumps
 
-raw_data_path = "C:/Users/Big data/Anaconda3/envs/Project/ETL/final_raw_data.json"
-clean_data_path = "C:/Users/Big data/Anaconda3/envs/Project/ETL/clean_data_for_elk.json"
-reason_path = "C:/Users/Big data/Anaconda3/envs/Project/ETL/reason.csv"
-win_lose_path = "C:/Users/Big data/Anaconda3/envs/Project/ETL/win_lose.csv"
-court_path = "C:/Users/Big data/Anaconda3/envs/Project/ETL/court.txt"
-jieba.load_userdict('C:/Users/Big data/Anaconda3/envs/Project/ETL/userdict.txt')
+raw_data_path = "/home/data/final_raw_data.json"
+clean_data_path = "/home/data/clean_data_for_elk.json"
+reason_path = "/home/data/reason.csv"
+win_lose_path = "/home/data/win_lose.csv"
+court_path = "/home/data/court.txt"
+jieba.load_userdict('/home/data/userdict.txt')
 
 # 建立Mongodb連線
 # mongodb_client = MongoClient('172.28.0.2:27017')
