@@ -22,8 +22,8 @@ body = {
     }
 }
 
-a = es.indices.create(index='judicial_test', ignore=400, body=body)
-# a = es.indices.delete(index='judicial_test', ignore=400)
+a = es.indices.create(index='judicial_1', ignore=400, body=body)
+# a = es.indices.delete(index='judicial_1', ignore=400)
 print(a)
 
 with open(clean_data_path, encoding='utf-8') as r:
@@ -31,7 +31,7 @@ with open(clean_data_path, encoding='utf-8') as r:
 
 k = 1
 for i in clean_data:
-    es.index(index='judicial_test', body=i)
+    es.index(index='judicial_1', body=i)
     print(k)
     k+=1
 
