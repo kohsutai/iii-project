@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Win_lose_result{% endblock title %}
+{% block content%}
+<form method='post' action={{ url_for('win_lose') }} >
+    <div class="input-group col-xs-10">
+        <input type="text" class="form-control" placeholder="請輸入故事" name="keyword">
+        <div class="input-group-btn">
+            <button class="btn btn-default" type="submit">
+                <i class="glyphicon glyphicon-search"></i>
+            </button>
+        </div>
+    </div>
+</form>
+
+<p>
+    <div style="font-size:16px">您的故事：{{keywords}}</div>
+</p>
+<p>
+    <div style="font-size:24px">分析結果如下：</div>
+</p>
+
+{% for i in results %}
+<p>
+    <div style="font-size:24px">當離婚理由為 {{i.0}} ，最高勝率的情況是 {{i.1}} 時，機率為 {{i.2}}%</div>
+    <div style="font-size:24px">雙方都不請律師時，可能勝訴的機率為 {{i.3}}%</div>
+    <div style="font-size:24px">只有您請律師時，可能勝訴的機率為 {{i.4}}%</div>
+    <div style="font-size:24px">雙方都請律師時，可能勝訴的機率為 {{i.5}}%</div>
+    <div style="font-size:24px">只有對方請律師時，可能勝訴的機率為 {{i.6}}%</div>
+    <div style="font-size:24px">{{i.0}} 常見的證據為：{% for p in i.7 %} {{p}} {% endfor %}</div>
+</p>
+{% endfor %}
+
+{% endblock content %}
