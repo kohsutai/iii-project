@@ -51,7 +51,7 @@ def find_factor(enter_str):
     result_prediction_list = []
     #  載入model
     for keyreason in reasons:
-        lr = joblib.load('C:/Users/Big data/Anaconda3/envs/Project/Flask/model/s_lr_%s.pkl' % keyreason)
+        lr = joblib.load('/flask/model/s_lr_%s.pkl' % keyreason)
         put_in = df[[keyreason, 'foreigner', 'proof', 'noshow', 'lawyer_both', 'lawyer_plaintiff', 'lawyer_defendant',
                      'lawyer_none', 'judge_court_地方法院', 'judge_court_高等法院', 'judge_court_最高法院', 'judge_court_少年及家事法院']]
         # 模擬不同情況(證據,律師)
