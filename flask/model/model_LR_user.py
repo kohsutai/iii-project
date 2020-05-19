@@ -6,8 +6,8 @@ import json
 
 entering = ''
 
-reason_path = "C:/Users/Big data/Anaconda3/envs/Project/Flask/reason.csv"
-proof_path = "C:/Users/Big data/Anaconda3/envs/Project/Flask/proofs_list.json"
+reason_path = "/flask/reason.csv"
+proof_path = "/flask/proofs_list.json"
 
 def find_factor(enter_str):
     data = {
