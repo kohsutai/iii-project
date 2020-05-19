@@ -6,10 +6,10 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.externals import joblib  # jbolib 儲存模型的模組
 import csv
 
-clean_data_path = "C:/Users/Big data/Anaconda3/envs/Project/Flask/clean_data.json"
-reason_path = "C:/Users/Big data/Anaconda3/envs/Project/Flask/reason.csv"
-win_lose_path = "C:/Users/Big data/Anaconda3/envs/Project/Flask/win_lose.csv"
-model_data_path = "C:/Users/Big data/Anaconda3/envs/Project/Flask/model/model_data.json"
+clean_data_path = "/flask/clean_data.json"
+reason_path = "/flask/reason.csv"
+win_lose_path = "/flask/win_lose.csv"
+model_data_path = "/flask/model/model_data.json"
 
 
 def find_reasons(r_path):
@@ -79,4 +79,3 @@ def main():
 if __name__ == '__main__':
     main()
 
-# 卡在奇怪的地方我也很無奈：找個方式存每個模型的訓驗及測試準確率
